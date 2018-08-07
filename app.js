@@ -6,7 +6,7 @@ const budgetController = (function() {
 
 	return {
 		publicTest: function(b){
-			console.log(add(b));
+			return add(b);
 		}
 	}
 })();
@@ -20,7 +20,14 @@ const UIController = (function() {
 
 })();
 
-const dataController = (function() {
+const controller = (function(budgetCtrl, UICtrl) {
 
-	// some code 
-})();
+	const z = budgetCtrl.publicTest(5);
+
+	return {
+		anotherPublic: function(){
+			console.log(z);
+		}
+	}
+
+})(budgetController, UIController);
