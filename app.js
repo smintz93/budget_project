@@ -18,8 +18,7 @@ const UIController = (function() {
 // GLOBAL APP CONTROLLER 
 const controller = (function(budgetCtrl, UICtrl) {
 
-	document.querySelector(".add__btn").addEventListener("click", function(){
-
+	const ctrlAddItem = function(){
 		// 1. Get input field data
 
 		// 2. Add item to the Budget Controller 
@@ -29,16 +28,22 @@ const controller = (function(budgetCtrl, UICtrl) {
 		// 4. Calc budget 
 
 		// 5. Display budget on UI
-	})
 
-	// If user hits 'enter' --> keycode 107
+	}
+
+	// Pass stand along function in here. Callback function. Event listener will call functio.
+	document.querySelector(".add__btn").addEventListener("click", ctrlAddItem);
+
+	
+
+
+	// If user hits 'enter' --> keyCode 13
 	document.addEventListener("keypress", function(e){
 
 		if(e.keyCode === 13){
-			console.log('ENTER was pressed')
-		} else {
-			console.log("...")
-		}
+			ctrlAddItem();	
+
+		} 
 	})
 
 })(budgetController, UIController);
