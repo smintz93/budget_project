@@ -36,7 +36,19 @@ const UIController = (function() {
 // GLOBAL APP CONTROLLER 
 const controller = (function(budgetCtrl, UICtrl) {
 
-	const DOM = UIController.getDOMstrings();
+	const setupEventListeners = function (){
+		const DOM = UIController.getDOMstrings();
+		// Pass stand along function in here. Callback function. Event listener will call functio.
+		document.querySelector(DOM.addBtn).addEventListener("click", ctrlAddItem);
+		// If user hits 'enter' --> keyCode 13
+		document.addEventListener("keypress", function(e){
+		if(e.keyCode === 13){
+			ctrlAddItem();	
+		} 
+	})
+}
+
+
 
 	const ctrlAddItem = function(){
 		// 1. Get input field data
@@ -51,18 +63,6 @@ const controller = (function(budgetCtrl, UICtrl) {
 
 		// 5. Display budget on UI
 
-	}
-
-	// Pass stand along function in here. Callback function. Event listener will call functio.
-	document.querySelector(DOM.addBtn).addEventListener("click", ctrlAddItem);
-
-
-
-	// If user hits 'enter' --> keyCode 13
-	document.addEventListener("keypress", function(e){
-		if(e.keyCode === 13){
-			ctrlAddItem();	
-		} 
-	})
+	};
 
 })(budgetController, UIController);
