@@ -10,20 +10,33 @@ const budgetController = (function() {
 
 // UI CONTROLLER 
 const UIController = (function() {
+
+	const DOMstrings = {
+		inputType: ".add__type",
+		inputDescription: ".add__description",
+		inputValue: ".add__value",
+		addBtn: ".add__btn"
+	}
+
 	return {
 		getInput: function(){
 			return {
-			 type: document.querySelector(".add__type").value, // Either inc or exp. 
-			 description: document.querySelector(".add__description").value,
-			 value: document.querySelector(".add__value").value
+			 type: document.querySelector(DOMstrings.inputType).value, // Either inc or exp. 
+			 description: document.querySelector(DOMstrings.inputDescription).value,
+			 value: document.querySelector(DOMstrings.inputValue).value
 			}	
+		},
+		// Public so it can be passed to Global App controller 
+		getDOMstrings: function(){
+			return DOMstrings;
 		}
 	};
-
 })();
 
 // GLOBAL APP CONTROLLER 
 const controller = (function(budgetCtrl, UICtrl) {
+
+	const DOM = UIController.getDOMstrings();
 
 	const ctrlAddItem = function(){
 		// 1. Get input field data
@@ -41,7 +54,7 @@ const controller = (function(budgetCtrl, UICtrl) {
 	}
 
 	// Pass stand along function in here. Callback function. Event listener will call functio.
-	document.querySelector(".add__btn").addEventListener("click", ctrlAddItem);
+	document.querySelector(DOM.addBtn).addEventListener("click", ctrlAddItem);
 
 
 
