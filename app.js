@@ -2,10 +2,22 @@
 // BUDGET CONTROLLER 
 const budgetController = (function() {
 
+	const Expense = function(id, description, value) {
+		this.id = id;
+		this.description = description;
+		this.value = value;
+	};
+
+	const Income = function(id, description, value) {
+	this.id = id;
+	this.description = description;
+	this.value = value;
+	};
+
+
 
 })();
-// this gets called right away bc of line 13
-// works because of closure. inner function always has access to variables even after return statement
+
 
 
 // UI CONTROLLER 
@@ -37,6 +49,7 @@ const UIController = (function() {
 const controller = (function(budgetCtrl, UICtrl) {
 
 	const setupEventListeners = function (){
+
 		const DOM = UIController.getDOMstrings();
 		// Pass stand along function in here. Callback function. Event listener will call functio.
 		document.querySelector(DOM.addBtn).addEventListener("click", ctrlAddItem);
@@ -47,13 +60,9 @@ const controller = (function(budgetCtrl, UICtrl) {
 		} 
 	})
 }
-
-
-
 	const ctrlAddItem = function(){
 		// 1. Get input field data
 		const input = UIController.getInput();
-		console.log(input);
 
 		// 2. Add item to the Budget Controller 
 
@@ -65,4 +74,15 @@ const controller = (function(budgetCtrl, UICtrl) {
 
 	};
 
+	// Public
+	return {
+		init: function(){
+			console.log("App has started")
+			setupEventListeners();
+		}
+	};
+
 })(budgetController, UIController);
+
+
+controller.init();
