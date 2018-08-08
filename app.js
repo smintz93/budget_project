@@ -10,8 +10,15 @@ const budgetController = (function() {
 
 // UI CONTROLLER 
 const UIController = (function() {
-
-	// some code
+	return {
+		getInput: function(){
+			return {
+			 type: document.querySelector(".add__type").value, // Either inc or exp. 
+			 description: document.querySelector(".add__description").value,
+			 value: document.querySelector(".add__value").value
+			}	
+		}
+	};
 
 })();
 
@@ -20,6 +27,8 @@ const controller = (function(budgetCtrl, UICtrl) {
 
 	const ctrlAddItem = function(){
 		// 1. Get input field data
+		const input = UIController.getInput();
+		console.log(input);
 
 		// 2. Add item to the Budget Controller 
 
@@ -34,15 +43,12 @@ const controller = (function(budgetCtrl, UICtrl) {
 	// Pass stand along function in here. Callback function. Event listener will call functio.
 	document.querySelector(".add__btn").addEventListener("click", ctrlAddItem);
 
-	
 
 
 	// If user hits 'enter' --> keyCode 13
 	document.addEventListener("keypress", function(e){
-
 		if(e.keyCode === 13){
 			ctrlAddItem();	
-
 		} 
 	})
 
