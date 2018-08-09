@@ -69,7 +69,7 @@ const UIController = (function() {
 		inputValue: ".add__value",
 		addBtn: ".add__btn",
 		incomeContainer: '.income__list',
-		expenseContainer: '.expense__list',
+		expenseContainer: '.expenses__list'
 	}
 
 	return {
