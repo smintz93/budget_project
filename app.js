@@ -23,7 +23,25 @@ const budgetController = (function() {
 		 	exp: 0,
 		 	inc: 0
 		 }
-	}
+	};
+
+	return {
+		addItem: function(type, des, val){
+			const newItem, ID;
+
+			ID = 0
+
+			if(type === 'exp'){
+				newItem = new Expense(ID, des, val)
+			} else if(type === 'inc') {
+				newItem = new Income(ID, des, val)
+			}
+			
+			// Push new item into array. [type] is always going to be exp or inc
+			data.allItems[type].push(newItem)
+
+		}
+	};
 
 })();
 
