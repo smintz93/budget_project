@@ -67,7 +67,9 @@ const UIController = (function() {
 		inputType: ".add__type",
 		inputDescription: ".add__description",
 		inputValue: ".add__value",
-		addBtn: ".add__btn"
+		addBtn: ".add__btn",
+		incomeContainer: '.income__list',
+		expenseContainer: '.expense__list',
 	}
 
 	return {
@@ -81,11 +83,13 @@ const UIController = (function() {
 
 		addListItem: function(obj, type){
 			// Create HTML string with palceholder text
-			let html, newHtml;
+			let html, newHtml, element;
 
 			if(type === 'inc') {
+				element = DOMstrings.incomeContainer;
 				html =  '<div class="item clearfix" id="income-%id%"> <div class="item__description"> %description%</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div></div>'
 			} else if(type === 'exp') {
+				element = DOMstrings.expenseContainer;
 				html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description">%description%</div> <div class="right clearfix"> <div class="item__value">- %value%</div> <div class="item__percentage">21%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
 			}
 
@@ -95,6 +99,8 @@ const UIController = (function() {
 			newHtml = newHtml.replace('%value%', obj.value);
 
 			// Insert HTML into DOM 
+			document.querySelector(element).insertAdjacentHTML('beforeend', newHtml)
+
 		},
 		// Public so it can be passed to Global App controller 
 		getDOMstrings: function(){
@@ -126,6 +132,7 @@ const controller = (function(budgetCtrl, UICtrl) {
 		const newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
 		// 3. Add the item to UI 
+		UIController.addListItem(newItem, input.type)
 
 		// 4. Calc budget 
 
