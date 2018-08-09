@@ -27,15 +27,20 @@ const budgetController = (function() {
 
 	return {
 		addItem: function(type, des, val){
-			const newItem, ID;
+			let newItem, ID
+				
 
 			// ID = last ID + 1
 			// length - 1 
 			// want the next id so + 1 
 
 			// Create new ID
-			ID = data.allItems[type][data.allItems[type].length -1].id + 1
-
+			if(data.allItems[type].length > 0){
+				ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+			} else {
+				ID = 0
+			}
+			
 
 			// Create new item based on 'inc' or 'exp' type 
 			if(type === 'exp'){
@@ -45,7 +50,7 @@ const budgetController = (function() {
 			}
 			// Push new item into array. [type] is always going to be exp or inc
 			data.allItems[type].push(newItem)
-			
+
 			return newItem;
 
 		}
@@ -99,7 +104,8 @@ const controller = (function(budgetCtrl, UICtrl) {
 		// 1. Get input field data
 		const input = UIController.getInput();
 
-		// 2. Add item to the Budget Controller 
+		// 2. Add item to the Budget Controller (accepts 3 params)
+		const newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
 		// 3. Add the item to UI 
 
