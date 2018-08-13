@@ -77,7 +77,7 @@ const UIController = (function() {
 			return {
 			 type: document.querySelector(DOMstrings.inputType).value, // Either inc or exp. 
 			 description: document.querySelector(DOMstrings.inputDescription).value,
-			 value: document.querySelector(DOMstrings.inputValue).value
+			 value: parseFloat(document.querySelector(DOMstrings.inputValue).value)
 			}	
 		},
 
@@ -128,32 +128,46 @@ const controller = (function(budgetCtrl, UICtrl) {
 
 	const setupEventListeners = function (){
 
-		const DOM = UIController.getDOMstrings();
-		// Pass stand along function in here. Callback function. Event listener will call functio.
-		document.querySelector(DOM.addBtn).addEventListener("click", ctrlAddItem);
-		// If user hits 'enter' --> keyCode 13
-		document.addEventListener("keypress", function(e){
-		if(e.keyCode === 13){
-			ctrlAddItem();	
-		} 
-	})
-}
+			const DOM = UIController.getDOMstrings();
+			// Pass stand along function in here. Callback function. Event listener will call functio.
+			document.querySelector(DOM.addBtn).addEventListener("click", ctrlAddItem);
+			// If user hits 'enter' --> keyCode 13
+			document.addEventListener("keypress", function(e){
+			if(e.keyCode === 13){
+				ctrlAddItem();	
+			} 
+		})
+	}
+
+	const updateBudget = function(){
+
+		// 1. Calc budget 
+
+		// 2. Return budget 
+
+		// 3. Display budget on UI
+
+
+	}
 	const ctrlAddItem = function(){
 		// 1. Get input field data
 		const input = UIController.getInput();
 
-		// 2. Add item to the Budget Controller (accepts 3 params)
-		const newItem = budgetCtrl.addItem(input.type, input.description, input.value);
+		if(input.description !== "" && !isNaN(input.value) && input.value > 0 ){
+			// 2. Add item to the Budget Controller (accepts 3 params)
+			const newItem = budgetCtrl.addItem(input.type, input.description, input.value);
 
-		// 3. Add the item to UI 
-		UIController.addListItem(newItem, input.type)
+			// 3. Add the item to UI 
+			UIController.addListItem(newItem, input.type)
 
-		// 4. Clear fields 
-		UIController.clearFields();
-		// 5. Calc budget 
+			// 4. Clear fields 
+			UIController.clearFields();
 
-		// 6. Display budget on UI
+			// 5. Calc and update Budget
+			updateBudget();
 
+		}
+	
 	};
 
 	// Public
