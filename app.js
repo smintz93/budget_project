@@ -102,6 +102,10 @@ const UIController = (function() {
 			document.querySelector(element).insertAdjacentHTML('beforeend', newHtml)
 
 		},
+
+		clearFields: function() {
+			const fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue)
+		},
 		// Public so it can be passed to Global App controller 
 		getDOMstrings: function(){
 			return DOMstrings;
