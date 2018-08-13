@@ -77,7 +77,7 @@ const budgetController = (function() {
 			data.budget = data.totals.inc - data.totals.exp;
 
 			// calculate % of income 
-			data.percentage = Math.round((data.totals.inc / data.totals.exp) * 100);
+			data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
 
 		},
 
@@ -183,6 +183,7 @@ const controller = (function(budgetCtrl, UICtrl) {
 		const budget = budgetCtrl.getBudget();
 
 		// 3. Display budget on UI
+		console.log(budget)
 
 
 	}
