@@ -105,6 +105,16 @@ const UIController = (function() {
 
 		clearFields: function() {
 			const fields = document.querySelectorAll(DOMstrings.inputDescription + ', ' + DOMstrings.inputValue)
+
+			// trick slice method into thinking fields is an array
+			const fieldsArray = Array.prototype.slice.call(fields);
+
+			// loops over all elements in fieldsArray and sets value to ""
+			fieldsArray.forEach(function(current, index, array){
+				current.value = "";
+			});
+
+			fieldsArray[0].focus();
 		},
 		// Public so it can be passed to Global App controller 
 		getDOMstrings: function(){
@@ -138,9 +148,11 @@ const controller = (function(budgetCtrl, UICtrl) {
 		// 3. Add the item to UI 
 		UIController.addListItem(newItem, input.type)
 
-		// 4. Calc budget 
+		// 4. Clear fields 
+		UIController.clearFields();
+		// 5. Calc budget 
 
-		// 5. Display budget on UI
+		// 6. Display budget on UI
 
 	};
 
