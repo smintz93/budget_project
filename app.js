@@ -77,7 +77,12 @@ const budgetController = (function() {
 			data.budget = data.totals.inc - data.totals.exp;
 
 			// calculate % of income 
-			data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+			if(data.totals.inc > 0){
+				data.percentage = Math.round((data.totals.exp / data.totals.inc) * 100);
+			} else {
+				data.percentage = -1;
+			}
+
 
 		},
 
@@ -104,7 +109,11 @@ const UIController = (function() {
 		inputValue: ".add__value",
 		addBtn: ".add__btn",
 		incomeContainer: '.income__list',
-		expenseContainer: '.expenses__list'
+		expenseContainer: '.expenses__list',
+		budgetLabel: '.budget__value',
+		expenseLabel: '.budget__expenses--value',
+		incomeLabel: '.budget__income--value',
+		percentageLabel: '.budget__expenses--percentage'
 	}
 
 	return {
@@ -154,6 +163,10 @@ const UIController = (function() {
 		// Public so it can be passed to Global App controller 
 		getDOMstrings: function(){
 			return DOMstrings;
+		},
+
+		displayBudget: function(obj) {
+
 		}
 	};
 })();
