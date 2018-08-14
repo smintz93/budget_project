@@ -111,7 +111,7 @@ const UIController = (function() {
 		incomeContainer: '.income__list',
 		expenseContainer: '.expenses__list',
 		budgetLabel: '.budget__value',
-		expenseLabel: '.budget__expenses--value',
+		expensesLabel: '.budget__expenses--value',
 		incomeLabel: '.budget__income--value',
 		percentageLabel: '.budget__expenses--percentage'
 	}
@@ -166,9 +166,13 @@ const UIController = (function() {
 		},
 
 		displayBudget: function(obj) {
-
+			document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
+			document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
+			document.querySelector(DOMstrings.expensesLabel).textContent = obj.totalExp;
+			document.querySelector(DOMstrings.percentageLabel).textContent = obj.percentage;
 		}
 	};
+
 })();
 
 // GLOBAL APP CONTROLLER 
@@ -196,7 +200,7 @@ const controller = (function(budgetCtrl, UICtrl) {
 		const budget = budgetCtrl.getBudget();
 
 		// 3. Display budget on UI
-		console.log(budget)
+		UICtrl.displayBudget(budget);
 
 
 	}
