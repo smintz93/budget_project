@@ -132,10 +132,10 @@ const UIController = (function() {
 
 			if(type === 'inc') {
 				element = DOMstrings.incomeContainer;
-				html =  '<div class="item clearfix" id="income-%id%"> <div class="item__description"> %description%</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div></div>'
+				html =  '<div class="item clearfix" id="inc-%id%"> <div class="item__description"> %description%</div> <div class="right clearfix"> <div class="item__value">%value%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button> </div> </div></div>'
 			} else if(type === 'exp') {
 				element = DOMstrings.expenseContainer;
-				html = '<div class="item clearfix" id="expense-%id%"> <div class="item__description">%description%</div> <div class="right clearfix"> <div class="item__value">- %value%</div> <div class="item__percentage">21%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
+				html = '<div class="item clearfix" id="exp-%id%"> <div class="item__description">%description%</div> <div class="right clearfix"> <div class="item__value">- %value%</div> <div class="item__percentage">21%</div> <div class="item__delete"> <button class="item__delete--btn"><i class="ion-ios-close-outline"></i></button></div></div></div>'
 			}
 
 			// Replace pholder text with real data 
@@ -235,7 +235,16 @@ const controller = (function(budgetCtrl, UICtrl) {
 	};
 
 	const ctrlDeleteItem = function(e){
-		console.log(e.target);
+		//traversing the dom to get div element we are interested it -> need the ID
+		const itemId =  e.target.parentNode.parentNode.parentNode.parentNode.id;
+
+		if(itemId){
+
+			// inc-1 
+			const splitId = itemId.split('-');
+			const type = splitId[0];
+			const ID = splitId[1];
+		}
 	}
 
 	// Public
