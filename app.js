@@ -177,6 +177,12 @@ const UIController = (function() {
 
 			fieldsArray[0].focus();
 		},
+
+		deleteListItem: function(selectorID){
+
+			const element = document.getElementById(selectorID)
+			element.parentNode.removeChild(element)
+		},
 		// Public so it can be passed to Global App controller 
 		getDOMstrings: function(){
 			return DOMstrings;
@@ -259,14 +265,17 @@ const controller = (function(budgetCtrl, UICtrl) {
 			// inc-1 
 			const splitId = itemId.split('-');
 			const type = splitId[0];
-			const ID = splitId[1];
+			const ID = parseInt(splitId[1]);
 
 			// 1. delete item from d.s.
-			budgetCtrl.deleteItem()
+			budgetCtrl.deleteItem(type, ID);
 
 			// 2. delete item from UI
+			UIController.deleteListItem(itemId)
 
 			// 3. update and show new budget
+			updateBudget();
+
 		}
 	}
 
