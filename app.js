@@ -74,6 +74,14 @@ const budgetController = (function() {
 				return current.id
 			});
 
+			const index = ids.indexOf(id);
+
+			// delete item from array
+
+			if(index !== -1){
+				data.allItems[type].splice(index, 1);
+			}
+
 		},
 		calculateBudget: function(){
 
@@ -254,6 +262,7 @@ const controller = (function(budgetCtrl, UICtrl) {
 			const ID = splitId[1];
 
 			// 1. delete item from d.s.
+			budgetCtrl.deleteItem()
 
 			// 2. delete item from UI
 
