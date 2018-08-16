@@ -67,6 +67,14 @@ const budgetController = (function() {
 			return newItem;
 
 		},
+
+		deleteItem: function(type, id){
+			// map returns brand new array.
+			const ids = data.allItems[type].map(function(current){
+				return current.id
+			});
+
+		},
 		calculateBudget: function(){
 
 			// calculate total income and expenses
@@ -244,6 +252,12 @@ const controller = (function(budgetCtrl, UICtrl) {
 			const splitId = itemId.split('-');
 			const type = splitId[0];
 			const ID = splitId[1];
+
+			// 1. delete item from d.s.
+
+			// 2. delete item from UI
+
+			// 3. update and show new budget
 		}
 	}
 
