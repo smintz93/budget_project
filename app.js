@@ -6,6 +6,20 @@ const budgetController = (function() {
 		this.id = id;
 		this.description = description;
 		this.value = value;
+		this.percentage = -1;
+	};
+
+	Expense.prototype.calcPercentage = function(totalIncome){
+		if(totalIncome > 0) {
+			this.percentage = Math.round((this.value / totalIncome) * 100);
+		} else {
+			this.percentage = -1;
+		}
+	};
+
+	// so each function has one specific task
+	Expense.prototype.getPercentage = function(){
+		return this.percentage;
 	};
 
 	const Income = function(id, description, value) {
@@ -98,7 +112,9 @@ const budgetController = (function() {
 			} else {
 				data.percentage = -1;
 			}
+		},
 
+		calculatePercentages: function(){
 
 		},
 
@@ -260,6 +276,9 @@ const controller = (function(budgetCtrl, UICtrl) {
 			// 5. Calc and update Budget
 			updateBudget();
 
+			// 6. Calc and update &
+			updatePercentages();
+
 		}
 	
 	};
@@ -282,7 +301,10 @@ const controller = (function(budgetCtrl, UICtrl) {
 			UIController.deleteListItem(itemId)
 
 			// 3. update and show new budget
-			updateBudget();
+			updateBudget()
+
+			// 4. Calc and update &
+			updatePercentages();;
 
 		}
 	}
