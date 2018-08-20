@@ -232,9 +232,17 @@ const controller = (function(budgetCtrl, UICtrl) {
 
 		// 3. Display budget on UI
 		UICtrl.displayBudget(budget);
-
-
 	}
+
+	const updatePercentages = function(){
+
+		// 1. Calc %
+
+		// 2. Read % from budget controller
+
+		// 3. Update UI with new &
+
+	};
 	const ctrlAddItem = function(){
 		// 1. Get input field data
 		const input = UIController.getInput();
