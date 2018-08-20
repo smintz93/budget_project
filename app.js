@@ -115,7 +115,17 @@ const budgetController = (function() {
 		},
 
 		calculatePercentages: function(){
+			data.allItems.exp.forEach(function(current) {
+				// calc perctange for each current item in the array
+				current.calcPercentage(data.totals.inc);
+			});
+		},
 
+		getPercentages: function(){
+			const allPerc = data.allItems.exp.map(function(current) {
+				return current.getPercentage();
+			})
+			return allPerc;
 		},
 
 		getBudget: function(){
@@ -253,10 +263,13 @@ const controller = (function(budgetCtrl, UICtrl) {
 	const updatePercentages = function(){
 
 		// 1. Calc %
+		budgetCtrl.calculatePercentages();
 
 		// 2. Read % from budget controller
+		const percentages = budgetCtrl.getPercentages();
 
 		// 3. Update UI with new &
+		console.log(percentages);
 
 	};
 	const ctrlAddItem = function(){
