@@ -156,7 +156,8 @@ const UIController = (function() {
 		expensesLabel: '.budget__expenses--value',
 		incomeLabel: '.budget__income--value',
 		percentageLabel: '.budget__expenses--percentage',
-		container: '.container'
+		container: '.container',
+		expensesPercLabel: '.item__percentage'
 	}
 
 	return {
@@ -212,6 +213,22 @@ const UIController = (function() {
 		// Public so it can be passed to Global App controller 
 		getDOMstrings: function(){
 			return DOMstrings;
+		},
+
+		displayPercentages: function(percentages){
+			
+			const fields = document.querySelectorAll(DOMstrings.expensesPercLabel);
+
+			const nodeListForEach = function(list, callback) {
+				for (let i = 0; i < list.length; i++){
+					callback(list[i], i)
+				}
+			};
+
+			nodeListForEach(fields, function(current, index){
+
+			})
+			
 		},
 
 		displayBudget: function(obj) {
