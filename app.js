@@ -237,8 +237,19 @@ const UIController = (function() {
 		},
 
 		formatNumber: function(num, type) {
+			let numSplit, int, dec;
 			//+ or - before num
 			//exactly two dec points, and common separting 1000s
+			// overwriting paramater num
+			num = Math.abs(num)
+			num = num.toFixed(2)
+			// now a string
+			numSplit = num.split('.')
+
+			int = numSplit[0];
+
+			dec = numSplit[1];
+
 		},
 
 		displayBudget: function(obj) {
