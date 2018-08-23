@@ -236,6 +236,11 @@ const UIController = (function() {
 			
 		},
 
+		formatNumber: function(num, type) {
+			//+ or - before num
+			//exactly two dec points, and common separting 1000s
+		},
+
 		displayBudget: function(obj) {
 			document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
 			document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
