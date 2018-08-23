@@ -160,6 +160,27 @@ const UIController = (function() {
 		expensesPercLabel: '.item__percentage'
 	}
 
+	const formatNumber = function(num, type) {
+			let numSplit, int, dec;
+			//+ or - before num
+			//exactly two dec points, and common separting 1000s
+			// overwriting paramater num
+			num = Math.abs(num)
+			num = num.toFixed(2)
+			// now a string
+			numSplit = num.split('.')
+
+			int = numSplit[0];
+			if(int.length > 3) {
+				int = int.substr(0, int.length - 3) + ',' + int.substr(int.length - 3, 3);			} 
+
+
+			dec = numSplit[1];
+
+			return (type === 'exp' ? '-' : '+') + ' ' + int + dec;
+
+		}
+
 	return {
 		getInput: function(){
 			return {
@@ -184,7 +205,7 @@ const UIController = (function() {
 			// Replace pholder text with real data 
 			newHtml = html.replace('%id%', obj.id);
 			newHtml = newHtml.replace('%description%', obj.description);
-			newHtml = newHtml.replace('%value%', obj.value);
+			newHtml = newHtml.replace('%value%', this.formatNumberobj.value);
 
 			// Insert HTML into DOM 
 			document.querySelector(element).insertAdjacentHTML('beforeend', newHtml)
@@ -236,22 +257,7 @@ const UIController = (function() {
 			
 		},
 
-		formatNumber: function(num, type) {
-			let numSplit, int, dec;
-			//+ or - before num
-			//exactly two dec points, and common separting 1000s
-			// overwriting paramater num
-			num = Math.abs(num)
-			num = num.toFixed(2)
-			// now a string
-			numSplit = num.split('.')
-
-			int = numSplit[0];
-
-			dec = numSplit[1];
-
-		},
-
+	
 		displayBudget: function(obj) {
 			document.querySelector(DOMstrings.budgetLabel).textContent = obj.budget;
 			document.querySelector(DOMstrings.incomeLabel).textContent = obj.totalInc;
