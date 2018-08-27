@@ -259,14 +259,15 @@ const UIController = (function() {
 		},
 
 		displayMonth: function(){
-			let now, year, month;
+			let now, year, month, months;
 
 			now = new Date();
 
+			months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 			month = now.getMonth();
 
 			year = now.getFullYear();
-			document.querySelector(DOMstrings.dateLabel).textContent = month + ' ' + year;
+			document.querySelector(DOMstrings.dateLabel).textContent = months[month] + ' ' + year;
 
 		},
 		displayBudget: function(obj) {
