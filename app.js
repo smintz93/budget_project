@@ -157,7 +157,8 @@ const UIController = (function() {
 		incomeLabel: '.budget__income--value',
 		percentageLabel: '.budget__expenses--percentage',
 		container: '.container',
-		expensesPercLabel: '.item__percentage'
+		expensesPercLabel: '.item__percentage',
+		dateLabel: '.budget__title--month'
 	}
 
 	const formatNumber = function(num, type) {
@@ -258,7 +259,15 @@ const UIController = (function() {
 		},
 
 		displayMonth: function(){
-			
+			let now, year, month;
+
+			now = new Date();
+
+			month = now.getMonth();
+
+			year = now.getFullYear();
+			document.querySelector(DOMstrings.dateLabel).textContent = month + ' ' + year;
+
 		},
 		displayBudget: function(obj) {
 			let type;
@@ -375,6 +384,7 @@ const controller = (function(budgetCtrl, UICtrl) {
 	return {
 		init: function(){
 			console.log("App has started")
+			UICtrl.displayMonth();
 			UICtrl.displayBudget( {
 				budget: 0,	
 				totalInc: 0, 
