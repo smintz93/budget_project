@@ -257,7 +257,9 @@ const UIController = (function() {
 			
 		},
 
-	
+		displayMonth: function(){
+			
+		},
 		displayBudget: function(obj) {
 			let type;
 			obj.budget > 0 ? type = 'inc' : type = 'exp'
