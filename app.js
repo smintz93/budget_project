@@ -273,7 +273,7 @@ const UIController = (function() {
 		changedType: function(){
 			//style changes
 			let fields = document.querySelectorAll(
-				DOMstrings.inputType, + ',' +
+				DOMstrings.inputType + ',' +
 				DOMstrings.inputDescription + ',' +
 				DOMstrings.inputValue
 			);	
