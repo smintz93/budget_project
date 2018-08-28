@@ -281,6 +281,8 @@ const UIController = (function() {
 			nodeListForEach(fields, function(current){
 				current.classList.toggle('red-focus');
 			});
+
+			document.querySelector(DOMstrings.addBtn).classList.toggle('red')
 				
 		},
 
