@@ -1,3 +1,4 @@
+// BUDGET APPLICATION
 // BUDGET CONTROLLER 
 const budgetController = (function() {
 
